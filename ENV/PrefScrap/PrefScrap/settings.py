@@ -9,14 +9,14 @@
 #     https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'mycrawler'
+BOT_NAME = 'PrefScrap'
 
-SPIDER_MODULES = ['mycrawler.spiders']
-NEWSPIDER_MODULE = 'mycrawler.spiders'
+SPIDER_MODULES = ['PrefScrap.spiders']
+NEWSPIDER_MODULE = 'PrefScrap.spiders'
 
 ITEM_PIPELINES = {
-                'mycrawler.pipelines.MycrawlerPipeline':1,
-                'mycrawler.pipelines.DatabasePipeline':2,
+                'PrefScrap.pipelines.FormatScrapPipeline':1,
+                'PrefScrap.pipelines.DatabasePipeline':2,
                 }
 
 

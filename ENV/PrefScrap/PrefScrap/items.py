@@ -8,8 +8,10 @@
 import scrapy
 
 
-class MycrawlerItem(scrapy.Item):
+class PrefsItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    link = scrapy.Field()
-    titulo = scrapy.Field()
+    titulo_noticia = scrapy.Field()
+    data_noticia = scrapy.Field()
+    hora_noticia = scrapy.Field()
+    link_noticia = scrapy.Field()

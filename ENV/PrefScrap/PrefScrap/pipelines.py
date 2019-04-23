@@ -7,11 +7,13 @@
 
 import redis
 
-class MycrawlerPipeline(object):
+class FormatScrapPipeline(object):
     def process_item(self, item, spider):
-        if item['link']:
-            if 'futebolatino.lance.com.br' not in item['link']:
-                item['link'] = 'http://www.lance.com.br' + item['link']
+        if item['link_noticia']:
+            if item['link_noticia'].startswith('//'):
+                item['link_noticia'] = item['link_noticia'].replace("//",'')
+        if item['titulo_noticia']:
+            item['titulo_noticia'] = item['titulo_noticia'].upper()
         return item
 
 class DatabasePipeline(object):
@@ -21,6 +23,5 @@ class DatabasePipeline(object):
     def process_item(self, item, spider):
         self.r.incr('indice', amount=1)
         i = self.r.get('indice').decode('utf-8')
-        self.r.set('link'+i,item['link'])
-        self.r.set('titulo'+i,item['titulo'])
-    
+        self.r.hmset('indice'+':{}'.format(i),item)
+        return item
